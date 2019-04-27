@@ -1,0 +1,19 @@
+<!--pages/mine/mine.wxml-->
+<view class="userInfo">
+  <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+  <text>{{userInfo.nickName}}</text>
+  <button class="modify-btn">修改个人信息</button>
+</view>
+
+<view class="money">
+  <text>我的闲钱币：</text>
+  <view class="balance">
+    <view class="iconfont icon-qian"></view>
+    <text class='balance-text'>{{balance}}</text>  
+  </view>
+</view>
+
+<view class="operator">
+  <button class="gold-btn">充值</button>
+  <button class="white-btn">提现</button>
+</view>

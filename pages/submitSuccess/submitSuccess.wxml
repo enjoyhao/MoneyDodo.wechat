@@ -1,0 +1,6 @@
+<!--pages/submitSuccess/submitSuccess.wxml-->
+
+<view class="center">
+  <block><icon type="success" size="100" /></block>
+  <block class="text"> 提交成功 </block>
+</view>

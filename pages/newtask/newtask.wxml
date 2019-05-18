@@ -1,0 +1,88 @@
+<!--pages/newtask/newtask.wxml-->
+<view class='body'>
+  <picker bindchange="bindTaskPickerChange" value="{{index_task}}" range="{{tasktypes}}" class="first_block">
+    <view class='picker'>
+      <block class="picker_text"> 任务类型：</block> 
+      <block class="tasktype_text">{{tasktypes[index_task]}} </block>
+      <block class="picker_icon"> <image class="arrow_icon" src="/static/imgs/arrow_down.png"></image> </block>
+    </view>
+  </picker>
+
+
+  <view class="url_block">
+    <textarea placeholder="填写问卷链接" class=".urlText" />
+  </view>
+
+  <view class='third_block'>
+    <view class="money">
+      <block class="title"> 赏金(元/份) </block>
+      <input type='digit' confirm-type='done' placeholder='0.00'></input>
+    </view>
+
+    <view class="money">
+      <block class="title"> 需求(份) </block>
+      <input type='digit' confirm-type='done' placeholder='100'></input>
+    </view>
+
+    <view class='deadline'>
+      <block class="title"> 截止日期 </block>
+      <picker 
+        mode = "date"
+        bindchange="bindDateChange"
+      > {{date}} </picker>
+      <block class="picker_icon">
+        <image class="arrow_icon" src="/static/imgs/arrow_down.png"></image>
+      </block>
+    </view>
+
+    <view class='deadline'>
+      <block class="title"> 截止时间 </block>
+      <picker
+        mode="time"
+        bindchange="bindTimeChange"
+      > {{time}} </picker>
+      <block class="picker_icon">
+        <image class="arrow_icon" src="/static/imgs/arrow_down.png"></image>
+      </block>
+    </view>
+
+  </view>
+
+  <view class="url_block">
+    <textarea placeholder="填写备注"/>
+  </view>
+
+  <view class='third_block'>
+    <view class="money">
+      <block> 接受任务者限制 </block>
+    </view>
+
+    <picker bindchange="bindSexPickerChange" value="{{index_sex}}" range="{{sex}}" >
+      <view class='picker'>
+        <block class="picker_text"> 性别：</block> 
+        <block class="tasktype_text">{{sex[index_sex]}} </block>
+        <block class="picker_icon"> <image class="arrow_icon" src="/static/imgs/arrow_down.png"></image> </block>
+      </view>
+    </picker>
+
+    <picker bindchange="bindGradePickerChange" value="{{index_grade}}" range="{{grades}}" >
+      <view class='picker'>
+        <block class="picker_text"> 年级：</block> 
+        <block class="tasktype_text">{{grades[index_grade]}} </block>
+        <block class="picker_icon"> <image class="arrow_icon" src="/static/imgs/arrow_down.png"></image> </block>
+      </view>
+    </picker>
+
+    <picker bindchange="bindSchoolPickerChange" value="{{index_school}}" range="{{school}}" >
+      <view class='picker'>
+        <block class="picker_text"> 所在学校：</block> 
+        <block class="tasktype_text">{{school[index_school]}} </block>
+        <block class="picker_icon"> <image class="arrow_icon" src="/static/imgs/arrow_down.png"></image> </block>
+      </view>
+    </picker>
+
+  </view>
+
+  <button class="submit" bindtap='submitTask' hover-class='submit-hover' >提交</button>
+  
+</view>

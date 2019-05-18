@@ -1,0 +1,91 @@
+/* pages/newtask/newtask.wxss */
+
+.body{
+  background: rgba(178, 178, 178, 0.1);
+  font-size: 15px;
+}
+
+.first_block{
+  background: #FFF;
+}
+
+.url_block{
+  display: flex;
+  flex-direction: column;
+  height: 120rpx;
+  margin-top: 30rpx;
+  margin-bottom: 10rpx;
+  padding: 20rpx;
+  background-color: #FFF;
+}
+
+.picker{
+  display: flex;
+  flex-flow: wrap;
+  justify-content:space-between;  
+  align-items: flex-start;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.picker .picker_icon{
+  align-self: flex-end;
+}
+
+.arrow_icon{
+  width: 40rpx;
+  height: 40rpx;
+  margin: 10rpx;
+}
+
+.third_block{
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  padding: 20rpx;
+  margin-top: 30rpx;
+}
+
+.money{
+  margin-bottom: 10rpx;
+  padding-bottom: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom-color: gray;
+  border-bottom-width: 2rpx;
+  border-bottom-style: solid;
+}
+
+.money input{
+  color: red;
+}
+
+.deadline{
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.submit{
+  margin: 20rpx;
+  text-align: center;
+  font-size: 14pt;
+  background-color: rgb(9, 187, 7);
+  color: #FFF;
+  height: 94rpx;
+  border-radius: 10rpx;
+}
+
+.submit-hover{
+  background-color: rgba(9, 187, 7, 0.8);
+}
+
+.button-disable{
+  background-color: rgba(9, 187, 7, 0.2);
+}

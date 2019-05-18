@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<view class="container flex-column">
+  <view class="userinfo">
+    <button wx:if="{{loadFinished && !hasProfile}}" type="primary" open-type="{{openType}}"  bindtap="{{openType==''?'bindGotoProfile':''}}" bindgetuserinfo="bindGetUserInfo">完善个人信息</button>
+  </view>
+</view>

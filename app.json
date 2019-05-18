@@ -1,13 +1,15 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/profile/profile"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "MoneyDodo",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

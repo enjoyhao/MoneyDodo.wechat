@@ -56,9 +56,6 @@ const rules = {
 
 module.exports = {
   formatTime: formatTime,
-<<<<<<< HEAD
-  formatDate: formatDate
-=======
+  formatDate: formatDate,
   rules: rules
->>>>>>> 3ad73cf2412d2ab89ee8ec2c479c31a0109c7537
 }

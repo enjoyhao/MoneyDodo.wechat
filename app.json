@@ -6,7 +6,8 @@
     "pages/mine/mine",
     "pages/newtask/newtask",
     "pages/submitSuccess/submitSuccess",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/taskDetail/taskDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

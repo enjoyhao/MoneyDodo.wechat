@@ -1,0 +1,77 @@
+/* pages/profile/profile.wxss */
+view {
+  box-sizing: border-box;
+  width: 750rpx;
+  font-size: 0.8rem;
+}
+
+.page-body {
+  background-color: #f8f8f8;
+  margin: 0rpx 0rpx;
+  padding: 0rpx, 0rpx;
+}
+
+.form-body {
+  width: 100%;
+  margin-left: 0rpx;
+  margin-right: 0rpx;
+  padding: 20rpx 0rpx;
+  justify-content: space-between;
+}
+
+.form-avatar {
+  margin-top: 40rpx;
+  padding: 30rpx 40rpx;
+  background-color: white;
+  border: solid 2rpx #b1b1b1;
+}
+
+.user-avatar {
+  height: 150rpx;
+  width: 150rpx;
+  border-radius: 50%;
+  border: solid 1px #b1b1b1; 
+}
+
+.form-item-group {
+  border: solid 2rpx #b1b1b1;
+  margin-top: 50rpx;
+}
+
+.line {
+  width: 675rpx;
+  height: 4rpx;
+  align-self: center;
+  background-color: #b1b1b1;
+}
+
+.form-item {
+  height: auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 40rpx;
+  background-color: white;
+}
+
+.form-item-value {
+  width: 550rpx;
+}
+
+.form-item-long {
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.form-item-long text {
+  padding-bottom: 20rpx;
+}
+
+.form-item-long textarea {
+  min-height: 150rpx;
+  margin-top: 20rpx;
+}
+/*
+view, input, text, textarea, image {
+  border: solid 2rpx blue;
+}
+*/

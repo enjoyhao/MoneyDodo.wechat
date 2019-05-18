@@ -1,7 +1,8 @@
 export default {
   data: {
-    server: 'http://localhost:8888',
-    apibase: '/api',
+    server: 'http://localhost:8123',
+    //server: 'http://172.18.32.216:8889',
+    apiBase: '/api',
     motto: 'Hello World',
     openId: null,
     token: null,

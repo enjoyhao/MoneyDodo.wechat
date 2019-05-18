@@ -9,6 +9,18 @@
   box-sizing: border-box;
 } 
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @font-face {font-family: "iconfont";
   src: url('iconfont.eot?t=1555774735168'); /* IE9 */
   src: url('iconfont.eot?t=1555774735168#iefix') format('embedded-opentype'), /* IE6-IE8 */

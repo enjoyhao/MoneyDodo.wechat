@@ -1,0 +1,48 @@
+<!--pages/profile/profile.wxml-->
+<view class="page-body flex-column">
+  <form class="flex-column form-body" bindsubmit="bindSubmit">
+    <view class="flex-row form-avatar">
+      <image class="user-avatar" mode="scaleToFill" src="{{avatarSrc}}"></image>
+    </view>
+    <view class="form-item-group flex-column">
+      <view class="flex-row form-item">
+        <text>姓名</text>
+        <input disabled="{{!isEditMode}}" class="form-item-value" name="name" type="text" maxlength="20" placeholder="*请输入姓名" value="{{profile && profile.name?profile.name:''}}"/>
+      </view>
+      <view class="line"></view>
+      <view class="flex-row form-item">
+        <text>学号</text>
+        <input disabled="{{!isEditMode}}" class="form-item-value" name="sId" type="number" maxlength="10" placeholder="*请输入学号" value="{{profile && profile.sId?profile.sId:''}}"/>
+      </view>
+    </view>
+    <view class="form-item-group flex-column">
+      <view class="flex-row form-item">
+        <text>手机</text>
+        <input disabled="{{!isEditMode}}" class="form-item-value" name="phone" type="number" maxlength="11" placeholder="*请输入手机" value="{{profile && profile.phone?profile.phone:''}}"/>
+      </view>
+      <view class="line"></view>
+      <view class="flex-row form-item">
+        <text>邮箱</text>
+        <input disabled="{{!isEditMode}}" class="form-item-value" name="email" type="text" maxlength="50" placeholder="请输入邮箱" value="{{profile && profile.email?profile.email:''}}"/>
+      </view>
+    </view>
+    <view class="form-item-group flex-column">
+      <view class="flex-column form-item form-item-long">
+        <text>个人简介</text>
+        <view class="line"></view>
+        <textarea disabled="{{!isEditMode}}" name="introduction" type="text" maxlength="30" auto-height placeholder="个人简介" value="{{profile && profile.introduction?profile.introduction:''}}"/>
+      </view>
+    </view>
+    <view class="form-item-group">
+      <view class="flex-row form-item">
+        <text>认证情况</text>
+        <icon type="cancel" color="red"></icon>
+        <text>（点击上传身份认证信息）</text>
+      </view>
+    </view>
+    <view class="flex-row">
+      <button type="primary" form-type="reset">重置</button>
+      <button type="primary" form-type="submit">确认</button>
+    </view>
+  </form>
+</view>

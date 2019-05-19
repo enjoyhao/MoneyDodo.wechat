@@ -45,13 +45,14 @@ create(store, {
         isLoginFinished: true
       })
       // 从服务端获取用户个人信息
-      return user.getUser(store.data.openId)
+      return user.getUser()
     }, err => {
-      that.setData({
-        msg: '连接失败，请刷新重试'
-      })
       // TODO:处理此处的显示
       wx.hideLoading()
+      wx.showToast({
+        title: '连接失败，请刷新重试或检查网络',
+        icon: 'none'
+      })
     })
     .then(res => {
       console.log(res)
@@ -68,6 +69,10 @@ create(store, {
           // 用户个人信息已经填写，返回首页
           wx.switchTab({
             url: '../index/index',
+          })
+        } else {
+          wx.redirectTo({
+            url: '../profile/profile'
           })
         }
       })
@@ -133,7 +138,7 @@ create(store, {
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    this.onLoad()
   },
 
   /**

@@ -1,13 +1,30 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view class="container flex-column">
+  <swiper class="flex-column" indicator-dots autoplay>
+    <swiper-item>
+      <view class="swiper-item-wrapper" >推广1</view>
+    </swiper-item>
+    <swiper-item>
+      <view class="swiper-item-wrapper">推广2</view>
+    </swiper-item>
+    <swiper-item>
+      <view class="swiper-item-wrapper">推广3</view>
+    </swiper-item>
+  </swiper>
+  <view class="flex-column tab-box">
+    <mini-tab class="tab" tabs="{{businessType}}">
+      <view class="flex-row questionnaire-list" slot="0">
+        <card class="questionnaire-card"></card>
+        <card class="questionnaire-card" detail="很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的任务详情"></card>
+        <card class="questionnaire-card"></card>
+        <card class="questionnaire-card"></card>
+      </view>
+      <view slot="1">内容2</view>
+      <view slot="2">内容3</view>
+      <view slot="3">内容4</view>
+    </mini-tab>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view>
+    <button type="primary" bindtap="test" class="temp">test</button>
   </view>
 </view>

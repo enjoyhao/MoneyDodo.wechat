@@ -1,21 +1,62 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+page {
+  height: 100%;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+swiper {
+  box-sizing: border-box;
+  width: 750rpx;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+swiper-item {
+  box-sizing: border-box;
 }
 
-.usermotto {
-  margin-top: 200px;
+view {
+  box-sizing: border-box;
+  width: 100%;
 }
+
+.container {
+  height: 100%;
+  width: 100%;
+  padding: 0 0;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.swiper-item-wrapper {
+  background-color: #ff9800;
+  height: 100%;
+}
+
+.tab {
+  height: 100%;
+}
+
+.tab-box {
+  flex: 1;
+  height: 100%;
+}
+
+.questionnaire-list {
+  align-items: flex-start;
+  align-content: flex-start;
+  /*flex-wrap: wrap;*/
+  flex-flow: row wrap;
+}
+
+.questionnaire-card {
+  box-sizing: border-box;
+  justify-content: space-between;
+  margin-top: 10rpx;
+  margin-right: 5rpx;
+  width: 48%;
+  font-size: 0.7em;
+}
+/*
+swiper, swiper-item, view, input, text, textarea, image {
+  border: solid 2rpx blue;
+}
+*/
+

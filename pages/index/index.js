@@ -1,13 +1,21 @@
 //index.js
+import store from '../../store/store.js'
+import create from '../../utils/create'
+import test from '../../api/test'
+import regeneratorRuntime from '../../libs/runtime'
+
 //获取应用实例
 const app = getApp()
 
-Page({
+create(store, {
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    motto: null,
+    userInfo: null,
+    hasUserInfo: null,
+    hasProfile: null,
+    canIUse: null,
+    array: ['1','2','3'],
+    businessType: ['问卷调查','外卖代取','社团招新','快递代取']
   },
   //事件处理函数
   bindViewTap: function() {
@@ -16,12 +24,8 @@ Page({
     })
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
+  
+    /*else if (this.data.canIUse){
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -41,7 +45,7 @@ Page({
           })
         }
       })
-    }
+    }*/
   },
   getUserInfo: function(e) {
     console.log(e)
@@ -50,5 +54,10 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  test: function (e) {
+    test.testGetUser()
+    //test.testGetTasks()
+    test.wtf()
   }
 })

@@ -4,7 +4,10 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/mine/mine",
-    "pages/profile/profile"
+    "pages/newtask/newtask",
+    "pages/submitSuccess/submitSuccess",
+    "pages/profile/profile",
+    "pages/taskDetail/taskDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,7 +24,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/newtask/newtask",
         "text": "发布任务"
       },
       {

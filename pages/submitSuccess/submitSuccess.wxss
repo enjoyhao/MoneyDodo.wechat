@@ -1,0 +1,9 @@
+/* pages/submitSuccess/submitSuccess.wxss */
+
+.center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  vertical-align: center;
+}

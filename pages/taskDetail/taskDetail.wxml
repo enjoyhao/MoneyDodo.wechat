@@ -1,0 +1,32 @@
+<!--pages/taskDetail/taskDetail.wxml-->
+<view class="body">
+
+  <view class="top_block">
+    <view class="url_block">
+
+      <text class='title'> 问卷链接 </text>
+      <text class="url">{{task_url}}</text>
+
+    </view>
+  </view>
+
+  <view class='middle_block'>
+  
+    <view class="row">
+      <text> 赏金 </text>
+      <text class='red'> {{task_money}} </text>
+    </view>
+    <view class="row">
+      <text> 截止时间 </text>
+      <text class='red'> {{task_deadline}} </text>
+    </view>
+    <view class="row">
+      <text class='gray'> 备注 </text>
+      <text class='gray'> {{task_tips}} </text>
+    </view>
+
+  </view>
+
+  <button class='bottom_btn'>放弃任务</button>
+
+</view>

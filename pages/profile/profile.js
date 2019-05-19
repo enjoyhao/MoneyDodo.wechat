@@ -121,6 +121,7 @@ create(store, {
   },
   // 表单提交
   bindSubmit: function (e) {
+    let that = this
     console.log(e.detail)
     // 获取表单的值
     let data = e.detail.value
@@ -145,13 +146,16 @@ create(store, {
     // 提交表单
     // console.log('TODO:wait to submit')
     data.id = store.data.openId
-    user.putUser(store.data.openId, data).then(res => {
+    user.putUser(data).then(res => {
       console.log(res)
       if (res.data.status) {
         // 修改信息成功
         wx.showToast({
           title: '信息修改成功',
           icon: 'success'
+        })
+        that.setData({
+          isEditMode: false
         })
       }
     }, err => {
@@ -173,6 +177,23 @@ create(store, {
       }
       })
       */
+  },
+  /**
+   * 点击编辑时使页面进入可编辑状态 
+   */
+  onTabEdit: function (e) {
+    this.setData({
+      isEditMode: true
+    })
+  },
+  /**
+   * 点击取消编辑时回到编辑前状态
+   */
+  onTabCancel: function (e) {
+    // 通知表单将内容更新回编辑前状态
+    this.setData({
+      profile: this.data.profile,
+      isEditMode: false
+    })
   }
-
 })

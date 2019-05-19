@@ -2,7 +2,12 @@
 <view class="page-body flex-column">
   <form class="flex-column form-body" bindsubmit="bindSubmit">
     <view class="flex-row form-avatar">
-      <image class="user-avatar" mode="scaleToFill" src="{{avatarSrc}}"></image>
+      <view class="flex-row avatar-part">
+        <image class="user-avatar" mode="scaleToFill" src="{{avatarSrc}}"></image>
+        <text>选择头像</text>
+      </view>
+      <image class="icon" mode="scaleToFill" src="../../static/icons/edit.png" wx:if="{{isEditMode==false}}" bindtap="onTabEdit"></image>
+      <image class="icon-cancel" mode="scaleToFill" src="../../static/icons/cancel.png" wx:if="{{isEditMode}}" bindtap="onTabCancel"></image>
     </view>
     <view class="form-item-group flex-column">
       <view class="flex-row form-item">
@@ -40,9 +45,8 @@
         <text>（点击上传身份认证信息）</text>
       </view>
     </view>
-    <view class="flex-row">
-      <button type="primary" form-type="reset">重置</button>
-      <button type="primary" form-type="submit">确认</button>
+    <view class="flex-column form-btn">
+      <button wx:if="{{isEditMode}}" class="btn" type="primary" form-type="submit">确认</button>
     </view>
   </form>
 </view>

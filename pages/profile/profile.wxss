@@ -21,16 +21,33 @@ view {
 
 .form-avatar {
   margin-top: 40rpx;
-  padding: 30rpx 40rpx;
+  padding: 20rpx 30rpx;
+  justify-content: space-between;
   background-color: white;
   border: solid 2rpx #b1b1b1;
 }
 
+.avatar-part {
+  width: 300rpx;
+  padding: 0 0;
+  justify-content: space-between;
+}
+
 .user-avatar {
-  height: 150rpx;
-  width: 150rpx;
+  height: 120rpx;
+  width: 120rpx;
   border-radius: 50%;
   border: solid 1px #b1b1b1; 
+}
+
+.icon {
+  height: 70rpx;
+  width: 70rpx;
+}
+
+.icon-cancel {
+  height: 60rpx;
+  width: 60rpx;
 }
 
 .form-item-group {
@@ -49,7 +66,7 @@ view {
   height: auto;
   align-items: center;
   justify-content: space-between;
-  padding: 30rpx 40rpx;
+  padding: 20rpx 30rpx;
   background-color: white;
 }
 
@@ -70,6 +87,17 @@ view {
   min-height: 150rpx;
   margin-top: 20rpx;
 }
+
+.form-btn {
+  margin-top: 20rpx;
+}
+
+.btn {
+  font-size: 1em;
+  height: auto;
+  width: 650rpx;
+}
+
 /*
 view, input, text, textarea, image {
   border: solid 2rpx blue;

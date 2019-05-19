@@ -1,0 +1,49 @@
+/* components/mini-tab/mini-tab.wxss */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.box {
+  box-sizing: border-box;
+}
+
+.container {
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.tab-bar {
+  padding: 5rpx 20rpx;
+  justify-content: space-around;
+  background-color: #f8f8f8;
+  color: #b6b6b6;
+}
+
+.tab-active {
+  color: #323232;
+}
+
+.tab-bar-item {
+  padding: 10rpx 10rpx;
+  width: auto;
+}
+
+.content-box {
+  flex: 1;
+}
+
+.tab-item-container {
+  height: 100%;
+}
+
+.scroll-box {
+  height: 100%;
+}

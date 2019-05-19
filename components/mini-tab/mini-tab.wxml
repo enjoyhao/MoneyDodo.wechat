@@ -1,0 +1,15 @@
+<!--components/mini-tab/mini-tab.wxml-->
+<view class="container box flex-column">
+  <view class="box tab-bar flex-row">
+    <view class="box tab-bar-item {{index==current?'tab-active':''}}" wx:for="{{tabs}}" id="{{index}}" bindtap="switchTab">{{item}}</view>
+  </view>
+  <view class="content-box box flex-column">
+    <swiper class="tab-item-container" current="{{current}}" bindchange="tabChange">
+      <swiper-item wx:for="{{tabs}}" id="{{index}}">
+        <scroll-view class="scroll-box" scroll-y>
+          <slot name="{{index}}"></slot>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

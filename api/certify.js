@@ -1,12 +1,12 @@
-import store from '../store/store.js'
+import store from '../store/store'
 const apiBase = store.data.server + store.data.apiBase + '/users'
 export default {
-  getUser: () => {
+  getCerts: () => {
     let userId = store.data.openId
     return new Promise((resolve, reject) => {
       wx.request({
         method: 'GET',
-        url: `${apiBase}/${userId}`,
+        url: `${apiBase}/${userId}/certs`,
         header: {
           'Authorization': `Bearer ${store.data.token}`
         },
@@ -23,12 +23,13 @@ export default {
       })
     })
   },
-  putUser: (user) => {
+  postCerts: (user) => {
+    user = user || {}
     let userId = store.data.openId
     return new Promise((resolve, reject) => {
       wx.request({
-        method: 'PUT',
-        url: `${apiBase}/${userId}`,
+        method: 'POST',
+        url: `${apiBase}/${userId}/certs`,
         header: {
           'Authorization': `Bearer ${store.data.token}`
         },
@@ -46,26 +47,4 @@ export default {
       })
     })
   },
-  deleteUser: () => {
-    let userId = store.data.openId
-    return new Promise((resolve, reject) => {
-      wx.request({
-        method: 'DELETE',
-        url: `${apiBase}/${userId}`,
-        header: {
-          'Authorization': `Bearer ${store.data.token}`
-        },
-        success: res => {
-          if (res.statusCode != 200 || res.data.status == false) {
-            reject(res)
-          } else {
-            resolve(res)
-          }
-        },
-        fail: err => {
-          reject(err)
-        }
-      })
-    })
-  }
 }

@@ -1,0 +1,17 @@
+<!--components/card/card.wxml-->
+<view class="box flex-column container">
+  <view class="title">{{title}}</view>
+  <view class="detail"><text>任务详情：\n{{detail}}</text></view>
+  <view class="date"><text>开始时间：\n{{beginDate}}</text></view>
+  <view class="date"><text>截止时间：\n{{dueDate}}</text></view>
+  <view class="flex-row bottom-info">
+    <view class="flex-row bottom-info-item">
+      <image class="bottom-info-image" mode="scaleToFill" src="../../static/icons/publisher.png"></image>
+      <text>{{publisher}}</text>
+    </view>
+    <view class="flex-row bottom-info-item">
+      <image class="bottom-info-image" mode="scaleToFill" src="../../static/icons/reward.png"></image>
+      <text>{{reward}}</text>
+    </view>
+  </view>
+</view>

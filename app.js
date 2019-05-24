@@ -1,5 +1,6 @@
 //app.js
 import store from './store/store'
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -7,6 +8,11 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     console.log('on launch...')
+
+    // 加载本地存储
+    console.log(store)
+    store.data.userAvatar.path = wx.getStorageSync(this.globalData.config.USER_AVATAR_KEY) || ''
+    console.log(store)
   },
   getUserInfo: function () {
     return new Promise((resolve, reject)=> {
@@ -99,5 +105,12 @@ App({
     })
   },
   globalData: {
+    /**存放一些可配置的全局常量 */
+    config: {
+      /**用户头像url信息在storage中的key以及在云文件中的文件名 */
+      USER_AVATAR_KEY: 'user-avatar',
+      /**用户云文件的存储目录 */
+      CLOUD_DIR_USER: 'cloud_user',
+    }
   }
 })

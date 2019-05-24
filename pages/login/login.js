@@ -28,8 +28,17 @@ create(store, {
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    /**
+     * 该函数完成的任务：
+     * 向服务端发起请求进行登录认证，
+     * 获取登录态（token）后向服务端请求用户个人信息，
+     * 若用户个人信息为空（即首次使用该app），则跳转到用户信息编辑页面提示用户完善信息，
+     * 否则进入app首页
+     */
     wx.showLoading({
       title: '加载中',
+      /**显示透明蒙层防止触摸穿透 */
+      mask: true,
     })
     let that = this
     app.auth()
@@ -71,8 +80,9 @@ create(store, {
             url: '../index/index',
           })
         } else {
+          // 用户个人信息未填写，跳转到用户信息编辑页面
           wx.redirectTo({
-            url: '../profile/profile'
+            url: '../profile/profile?isFirstLogin=true'
           })
         }
       })
@@ -166,7 +176,7 @@ create(store, {
     this.update().then(() => {
       // 跳转到用户信息编辑页面
       wx.redirectTo({
-        url: '../profile/profile'
+        url: '../profile/profile?isFirstLogin=true'
       })
     });
   },

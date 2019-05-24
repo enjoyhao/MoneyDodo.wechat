@@ -41,7 +41,7 @@ const rules = {
     return { 'status': status, 'errMsg': errMsg }
   },
   noInvalidChar: value => {
-    let regex = /[~!@#$%^&*()/\|,.<>?"'();:_+-=\[\]{}]/
+    let regex = /[~!@#$%^&*()/\|,.<>?"'();:_+\-=\[\]{}]/
     let status = !regex.test(value)
     let errMsg = status ? '' : '请勿输入特殊符号'
     return { 'status': status, 'errMsg': errMsg }

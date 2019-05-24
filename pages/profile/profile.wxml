@@ -2,7 +2,7 @@
 <view class="page-body flex-column">
   <form class="flex-column form-body" bindsubmit="bindSubmit">
     <view class="flex-row form-avatar">
-      <view class="flex-row avatar-part">
+      <view class="flex-row avatar-part" bindtap="onTabChooseAvatar">
         <image class="user-avatar" mode="scaleToFill" src="{{avatarSrc}}"></image>
         <text>选择头像</text>
       </view>
@@ -39,9 +39,9 @@
       </view>
     </view>
     <view class="form-item-group">
-      <view class="flex-row form-item">
+      <view class="flex-row form-item" bindtap="onTabUploadCertification">
         <text>认证情况</text>
-        <icon type="cancel" color="red"></icon>
+        <icon type="{{profile.certificationStatus == 0 ? 'cancel' : 'success'}}" color="{{profile.certificationStatus == 0 ? 'red' : 'green'}}"></icon>
         <text>（点击上传身份认证信息）</text>
       </view>
     </view>

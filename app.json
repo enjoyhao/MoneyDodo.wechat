@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/fillInQuestionaire/fillInQuestionaire",
+    "pages/mine/mine",
     "pages/login/login",
+    
     "pages/index/index",
     "pages/logs/logs",
-    "pages/mine/mine",
     "pages/newtask/newtask",
     "pages/submitSuccess/submitSuccess",
     "pages/profile/profile",

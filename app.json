@@ -1,13 +1,15 @@
 {
   "pages": [
-    "pages/login/login",
+    "pages/qtnrDetail/qtnrDetail",
+    "pages/newtask/newtask",
+    "pages/taskDetail/taskDetail",
     "pages/index/index",
     "pages/logs/logs",
     "pages/mine/mine",
-    "pages/newtask/newtask",
     "pages/submitSuccess/submitSuccess",
     "pages/profile/profile",
-    "pages/taskDetail/taskDetail"
+    
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

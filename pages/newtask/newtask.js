@@ -1,5 +1,6 @@
 // pages/newtask/newtask.js
 var util = require('../../utils/util.js');
+var cpt = require('../../api/cpt.js');
 
 Page({
 
@@ -30,7 +31,34 @@ Page({
     index_grade: 0,
     index_school: 0,
     date: '2016-09-01',
-    time: '12:01'
+    time: '12:01',
+
+    //输入不合法时的提示
+    notes_hidden: true,
+    errorTips: "",
+
+    //问卷设计完成状况
+    designDone: false,
+    //问卷id用于提交任务
+    qsnrId: null,
+    //问卷标题用于设计完成后显示
+    qsnrTitle: "",
+
+    taskInfo:{
+      tasktype: 1,
+      qsnrId: null,
+      taskMoney: "0.00",
+      taskDemand: "100",
+      startTime: "",
+      deadline: "",
+      tips: "",
+      takerLimit: {
+        sex: "",
+        grade: "",
+        school: ""
+      }
+    }
+
   },
 
   /**
@@ -146,6 +174,51 @@ Page({
     this.setData({
       index_school: e.detail.value
     })
+  },
+
+  bindBlurMoney(e){
+    
+  },
+
+  bindBlurDemand(e){
+
+  },
+
+  bindInputMoney(e){
+    this.data.taskInfo.taskMoney = e.detail.value;
+  },
+
+  bindInputDemand(e) {
+    this.data.taskInfo.taskDemand = e.detail.value
+  },
+
+  submitTask: function(){
+    var nowTime = util.formatTime(new Date());
+    var nowDate = util.formatDate(new Date());
+
+    this.data.taskInfo.startTime = nowDate + ' ' + nowTime;
+    this.data.taskInfo.deadline = this.date + " " + this.time;
+
+    this.data.taskInfo.takerLimit.sex = this.data.sex[this.data.index_sex];
+    this.data.taskInfo.takerLimit.grade = this.data.grades[this.data.index_grade];
+    
+    this.data.taskInfo.takerLimit.school = this.data.school[this.data.index_school];
+
+    console.log(this.data.taskInfo);
+
+    //提交任务信息
+    //TO DO
+    var newtask = {};
+    newtask.taskType = this.data.taskInfo.tasktype;
+    newtask.taskFrom = store.data.openId;
+    newtask.taskLimit = "000";
+    newtask.releaseTime = this.data.taskInfo.startTime;
+    newtask.cutoffTime = this.data.taskInfo.deadline;
+    newtask.rewardAmount = this.data.taskInfo.taskMoney;
+    newtask.taskStatus = "未完成" ;
+
+    cpt.postTask(newtask, )
+
   }
 
 })

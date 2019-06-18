@@ -1,11 +1,24 @@
 // pages/taskDetail/taskDetail.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    task_url: "www.wjx.com/kshakdhfalisjkjsdx/893748hfgw87edjsh/skdhfhiw8",
+    //用于显示
+    qsnrTitle: "问卷标题",
+    //用于进入问卷填写页面
+    qsnrId: 0,
+    //问卷发布者id
+    qsnrPublisherId: 0,
+    //若“我”是taker则不显示底部按钮
+    imTaker: false,
+    imPublisher: true,
+
+    userInfo: {},
+    hasUserInfo: false,
+
     task_money: "1.00",
     task_deadline: "2019-5-18 23:59",
     task_tips: "不要乱填"
@@ -35,6 +48,18 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     })
+
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      });
+      console(this.data.userInfo);
+
+      //获取当前用户id并判断是否是发布者
+      //TO DO
+    }
+
   },
 
   /**
@@ -70,5 +95,24 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  startToDo: function() {
+    //跳转到填写问卷界面
+    //TO Do
+  },
+
+  taskDone: function() {
+
+  },
+
+
+  cancleTask: function() {
+
+  },
+
+  exit: function() {
+    //跳转到首页
+    //TO Do
   }
 })

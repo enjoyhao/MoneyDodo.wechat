@@ -4,8 +4,7 @@
   <view class="top_block">
     <view class="url_block">
 
-      <text class='title'> 问卷链接 </text>
-      <text class="url">{{task_url}}</text>
+      <text class='qsnrTitle'> {{qsnrTitle}} </text>
 
     </view>
   </view>
@@ -27,6 +26,8 @@
 
   </view>
 
-  <button class='bottom_btn'>放弃任务</button>
+  <button class='main_btn' hidden='{{imPublisher}}' bindtap='startToDo'>接受任务并开始填写</button>
+  <button class="second_btn" hidden='{{imPublisher}}' bindtap='exit'> 退出 </button>
+  <button class='main_btn' hidden='{{imTaker}}' bindtap='taskDone'>结束任务</button><button class='second_btn' hidden='{{imTaker}}' bindtap='cancleTask'>取消任务</button>
 
 </view>

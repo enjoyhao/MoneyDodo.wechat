@@ -1,4 +1,9 @@
 <!--pages/newtask/newtask.wxml-->
+
+<view class='notes' hidden='{{notes_hidden}}'>
+  <text>{{errorTips}}</text>
+</view>
+
 <view class='body'>
   <picker bindchange="bindTaskPickerChange" value="{{index_task}}" range="{{tasktypes}}" class="first_block">
     <view class='picker'>
@@ -10,18 +15,18 @@
 
 
   <view class="url_block">
-    <textarea placeholder="填写问卷链接" class=".urlText" />
+    <button class="newQuestionair">设计问卷</button>
   </view>
 
   <view class='third_block'>
     <view class="money">
       <block class="title"> 赏金(元/份) </block>
-      <input type='digit' confirm-type='done' placeholder='0.00'></input>
+      <input type='digit' confirm-type='done' placeholder='0.00' value='{{taskInfo.taskMoney}}'  bindblur="bindBlurMoney" bindinput='bindInputMoney'></input>
     </view>
 
     <view class="money">
       <block class="title"> 需求(份) </block>
-      <input type='digit' confirm-type='done' placeholder='100'></input>
+      <input type='digit' confirm-type='done' value='{{taskInfo.taskDemand}}' placeholder='100' bindblur='bindBlurDemand' bindinput='bindInputDemand'></input>
     </view>
 
     <view class='deadline'>
@@ -49,7 +54,7 @@
   </view>
 
   <view class="url_block">
-    <textarea placeholder="填写备注"/>
+    <textarea placeholder="填写备注" value='{{taskinfo.tips}}'/>
   </view>
 
   <view class='third_block'>

@@ -1,11 +1,21 @@
 {
   "pages": [
+<<<<<<< HEAD
     "pages/qtnrDetail/qtnrDetail",
     "pages/newtask/newtask",
     "pages/taskDetail/taskDetail",
     "pages/index/index",
     "pages/logs/logs",
     "pages/mine/mine",
+=======
+    "pages/fillInQuestionaire/fillInQuestionaire",
+    "pages/mine/mine",
+    "pages/login/login",
+    
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/newtask/newtask",
+>>>>>>> 940009ca23ec0df86f86a2ddaf1728198c48caa4
     "pages/submitSuccess/submitSuccess",
     "pages/profile/profile",
     

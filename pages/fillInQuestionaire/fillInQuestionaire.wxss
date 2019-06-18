@@ -1,0 +1,52 @@
+/* pages/fillInQuestionaire/fillInQuestionaire.wxss */
+.body{
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-bottom: 30rpx;
+  background: #E6E6FA;
+  font-size: 13pt;
+}
+
+.type{
+  margin-left: 30rpx;
+  padding-top: 30rpx;
+}
+
+.question-block{
+  background: white;
+  border-radius: 10px;
+  padding-bottom: 50rpx;
+  margin:10rpx;
+}
+
+.title {
+  font-weight: bold;
+  padding:40rpx;
+}
+
+.radio-group{
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
+
+.radio{
+  border: 1px solid #DBDBDB;
+  border-radius: 5px;
+  margin: 10rpx;
+  padding: 10rpx;
+}
+
+radio {
+  transform:scale(0.7);
+}
+
+.textarea{
+  border: 1px solid #DBDBDB;
+  border-radius: 5px;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+}
+
+.bottom_btn{
+  margin: 30rpx;
+}

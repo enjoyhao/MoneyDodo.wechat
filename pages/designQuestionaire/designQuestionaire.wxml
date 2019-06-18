@@ -1,0 +1,61 @@
+<!--pages/designQuestionaire/designQuestionaire.wxml-->
+<view class="body">
+  <view class='type'>
+    <text>单选题</text>
+    <view class='iconfont-jia icon-jia' bindtap='addSingleChoice'></view>   
+  </view>
+  
+  <view wx:for='{{qtnr.singleChoice}}' wx:key="index" class='question-block'>
+    <view class='title' bindtap='setSingleQuestion' data-index='{{index}}'>{{item.question}}</view>
+    <radio-group class="radio-group">
+      <view class="radio" wx:for="{{item.choices}}" wx:key="index" wx:for-index='in_index'>
+        <radio/><text bindtap='setSingleItem' data-index='{{in_index}}' data-q='{{index}}'>{{item}}</text>
+        <view></view>
+      </view>
+    </radio-group>
+  </view>
+
+  <view class='type'>
+    <text>多选题</text>
+    <view class='iconfont-jia icon-jia' bindtap='addMultiChoice'></view>   
+  </view>
+  <view wx:for='{{qtnr.mutipleChoice}}' wx:key="index" class='question-block'>   
+    <view class='title' bindtap='setMultiQuestion' data-index='{{index}}'>{{item.question}}</view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <view class="radio" wx:for="{{item.choices}}" wx:key="index" wx:for-index='in_index'>
+        <radio/><text bindtap='setMultiItem' data-index='{{in_index}}' data-q='{{index}}'>{{item}}</text>
+        <view></view>
+      </view>
+    </radio-group>
+  </view>
+
+  <view class='type'>
+    <text>简答题</text>
+    <view class='iconfont-jia icon-jia' bindtap='addQuery'></view>   
+  </view>
+  <view wx:for='{{qtnr.query}}' wx:key="index" class='question-block'>
+    <view class='title' bindtap='setQueryQuestion' data-index='{{index}}'>{{item.question}}</view>
+    <view class='textarea'></view>
+  </view>
+
+  <button class='bottom_btn'>创建问卷</button>
+
+  <!--弹窗-->
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+    <view class="modal-title">修改{{setType}}</view>
+    <view class="modal-content">
+      <view class="modal-input">
+        <input placeholder-class="input-holder" type="number" maxlength="10" bindinput="inputChange" class="input" placeholder="请输入{{setType}}"></input>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+      <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+    </view>
+  </view>
+
+
+</view>
+
+

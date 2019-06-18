@@ -135,3 +135,9 @@ input-holder {
   color: #ec5300;
   text-align: center;
 }
+
+.addItem {
+  color: blue;
+  margin: 40rpx;
+  font-size: 30rpx;
+}

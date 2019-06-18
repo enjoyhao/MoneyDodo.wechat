@@ -209,5 +209,21 @@ Page({
       input: e.detail.value
     })
     console.log(this.data.input)
+  },
+
+  addSingleItem: function (e) {
+    let q = this.data.qtnr
+    q.singleChoice[e.currentTarget.dataset.index].choices.push('选项')
+    this.setData({
+      qtnr: q
+    })
+  },
+
+  addMultiItem: function (e) {
+    let q = this.data.qtnr
+    q.mutipleChoice[e.currentTarget.dataset.index].choices.push('选项')
+    this.setData({
+      qtnr: q
+    })
   }
 })

@@ -13,6 +13,7 @@
         <view></view>
       </view>
     </radio-group>
+    <text class='addItem' bindtap='addSingleItem' data-index='{{index}}'>添加选项</text>
   </view>
 
   <view class='type'>
@@ -27,6 +28,7 @@
         <view></view>
       </view>
     </radio-group>
+    <text class='addItem' bindtap='addMultiItem' data-index='{{index}}'>添加选项</text>
   </view>
 
   <view class='type'>

@@ -213,10 +213,27 @@ create(store, {
     console.log(this.data.input)
   },
 
+
   submitQtnr: function(e) {
     store.data.newQtnr = this.data.qtnr;
     wx.navigateBack({
       delta: 1
+    })
+  },
+
+  addSingleItem: function (e) {
+    let q = this.data.qtnr
+    q.singleChoice[e.currentTarget.dataset.index].choices.push('选项')
+    this.setData({
+      qtnr: q
+    })
+  },
+
+  addMultiItem: function (e) {
+    let q = this.data.qtnr
+    q.mutipleChoice[e.currentTarget.dataset.index].choices.push('选项')
+    this.setData({
+      qtnr: q
     })
   }
 })

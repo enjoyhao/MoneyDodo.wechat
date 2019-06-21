@@ -7,7 +7,8 @@
     "pages/newtask/newtask",
     "pages/submitSuccess/submitSuccess",
     "pages/profile/profile",
-    "pages/taskDetail/taskDetail"
+    "pages/taskDetail/taskDetail",
+    "pages/design-questionnaire/design-questionnaire"
   ],
   "window": {
     "backgroundTextStyle": "light",

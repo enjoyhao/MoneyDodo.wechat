@@ -56,8 +56,15 @@ create(store, {
     })
   },
   test: function (e) {
-    test.testGetUser()
-    //test.testGetTasks()
-    test.wtf()
+    // test.testGetUser()
+    // test.testGetTasks()
+    // test.testApiTask()
+    // test.testApiCpt()
+    // test.wtf()
+    // test.testApiCpt()
+    // test.testGetCerts()
+    wx.navigateTo({
+      url: '../design-questionnaire/design-questionnaire',
+    })
   }
 })

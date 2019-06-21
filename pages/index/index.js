@@ -66,5 +66,8 @@ create(store, {
     wx.navigateTo({
       url: '../design-questionnaire/design-questionnaire',
     })
+    // test.testGetUser()
+    // test.testGetTasks()
+    // test.wtf()
   }
 })

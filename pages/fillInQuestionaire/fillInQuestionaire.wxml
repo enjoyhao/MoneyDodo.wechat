@@ -1,0 +1,34 @@
+<!--pages/fillInQuestionaire/fillInQuestionaire.wxml-->
+<view class="body">
+  <view class='type'>单选题</view>
+  <view wx:for='{{qtnr.singleChoice}}' wx:key="index" class='question-block'>
+    <view class='title'>{{item.question}}</view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <view class="radio" wx:for="{{item.choices}}" wx:key="index">
+        <radio/>{{item}}
+        <view></view>
+      </view>
+    </radio-group>
+  </view>
+
+  <view class='type'>多选题</view>
+  <view wx:for='{{qtnr.mutipleChoice}}' wx:key="index" class='question-block'>   
+    <view class='title'>{{item.question}}</view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <view class="radio" wx:for="{{item.choices}}" wx:key="index">
+        <radio/>{{item}}
+        <view></view>
+      </view>
+    </radio-group>
+  </view>
+
+  <view class='type'>简答题</view>
+  <view wx:for='{{qtnr.query}}' wx:key="index" class='question-block'>
+    <view class='title'>{{item.question}}</view>
+    <view class='textarea'><textarea></textarea></view>
+  </view>
+
+  <button class='bottom_btn'>提交问卷</button>
+
+</view>
+

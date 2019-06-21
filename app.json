@@ -1,14 +1,26 @@
 {
   "pages": [
+    
     "pages/login/login",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/mine/mine",
     "pages/newtask/newtask",
+    "pages/designQuestionaire/designQuestionaire",
+    "pages/fillInQuestionaire/fillInQuestionaire",
+    
+    "pages/taskDetail/taskDetail",
+    "pages/index/index",
+    
+    "pages/logs/logs",
+    
+    "pages/mine/mine",
     "pages/submitSuccess/submitSuccess",
+<<<<<<< HEAD
     "pages/profile/profile",
     "pages/taskDetail/taskDetail",
     "pages/design-questionnaire/design-questionnaire"
+=======
+    "pages/profile/profile"
+
+>>>>>>> 17e2071c100b5180b650d96772b0e2be5abfcc50
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -22,16 +22,8 @@
   padding: 70rpx;
 }
 
-.url_block .title{
+.url_block {
   font-weight: bold;
-}
-
-.url_block .url{
-  font-size: 17pt;
-  margin-top: 20rpx;
-  color:  #0066cc;
-  text-decoration: underline;
-  word-break: break-all;
 }
 
 .middle_block{
@@ -51,9 +43,13 @@
   margin: 20rpx;
 }
 
-.bottom_btn{
+.second_btn{
   margin: 30rpx;
+  border-radius: 50rpx;
+  font-size: 12pt;
 }
+
+
 
 .row .red{
   color: red;
@@ -62,4 +58,16 @@
 .row .gray{
   font-style: italic;
   color: gray;
+}
+
+.qsnrTitle{
+  margin: 20rpx;
+}
+
+.main_btn{
+  font-size: 12pt;
+  background-color: #09bb07;
+  border-radius: 50rpx;
+  color: white;
+  margin: 30rpx;
 }

@@ -1,13 +1,14 @@
 {
   "pages": [
     
+    "pages/login/login",
+    "pages/newtask/newtask",
     "pages/designQuestionaire/designQuestionaire",
     "pages/fillInQuestionaire/fillInQuestionaire",
-    "pages/qtnrDetail/qtnrDetail",
-    "pages/newtask/newtask",
+    
     "pages/taskDetail/taskDetail",
-    "pages/login/login",
     "pages/index/index",
+    
     "pages/logs/logs",
     
     "pages/mine/mine",

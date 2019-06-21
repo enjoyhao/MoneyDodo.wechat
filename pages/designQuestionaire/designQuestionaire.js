@@ -1,5 +1,7 @@
 // pages/designQuestionaire/designQuestionaire.js
-Page({
+import store from '../../store/store.js'
+import create from '../../utils/create'
+create(store, {
 
   /**
    * 页面的初始数据
@@ -209,5 +211,12 @@ Page({
       input: e.detail.value
     })
     console.log(this.data.input)
+  },
+
+  submitQtnr: function(e) {
+    store.data.newQtnr = this.data.qtnr;
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

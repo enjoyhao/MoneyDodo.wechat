@@ -1,8 +1,11 @@
 // pages/newtask/newtask.js
 var util = require('../../utils/util.js');
-var cpt = require('../../api/cpt.js');
+import api_cpt from '../../api/cpt.js'
+import store from '../../store/store.js'
+import create from '../../utils/create'
 
-Page({
+
+create(store, {
 
   /**
    * 页面的初始数据
@@ -57,6 +60,55 @@ Page({
         grade: "",
         school: ""
       }
+    },
+
+
+    testnewtask:{
+      "kind": "questionnaire",
+      "publisher": "16340158",
+      "restrain": "none",
+      "reward": 1,
+      "state": "",
+      
+    },
+    qtnr : {
+      "taskId": "7",
+      "query": [
+        {
+          "question": "test?",
+          "answer": ""
+        },
+        {
+          "question": "test2?",
+          "answer": ""
+        }
+      ],
+      "singleChoice": [
+        {
+          "question": "test3?",
+          "choices": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "answer": ""
+        }
+      ],
+      "mutipleChoice": [
+        {
+          "question": "test3?",
+          "choices": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "answer": [
+            ""
+          ]
+        }
+      ]
     }
 
   },
@@ -65,7 +117,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      qtnr: store.data.newQtnr
+    })
+    console.log(this.data.qtnr)
   },
 
   /**
@@ -192,12 +247,18 @@ Page({
     this.data.taskInfo.taskDemand = e.detail.value
   },
 
+  designQtnrBtnClicked: function(e){
+    wx.navigateTo({
+      url: '/pages/designQuestionaire/designQuestionaire'
+    })
+  },
+
   submitTask: function(){
     var nowTime = util.formatTime(new Date());
     var nowDate = util.formatDate(new Date());
 
     this.data.taskInfo.startTime = nowDate + ' ' + nowTime;
-    this.data.taskInfo.deadline = this.date + " " + this.time;
+    this.data.taskInfo.deadline = this.data.date + " " + this.data.time;
 
     this.data.taskInfo.takerLimit.sex = this.data.sex[this.data.index_sex];
     this.data.taskInfo.takerLimit.grade = this.data.grades[this.data.index_grade];
@@ -208,7 +269,7 @@ Page({
 
     //提交任务信息
     //TO DO
-    var newtask = {};
+    var newtask = this;
     newtask.taskType = this.data.taskInfo.tasktype;
     newtask.taskFrom = store.data.openId;
     newtask.taskLimit = "000";
@@ -217,7 +278,13 @@ Page({
     newtask.rewardAmount = this.data.taskInfo.taskMoney;
     newtask.taskStatus = "未完成" ;
 
-    cpt.postTask(newtask, )
+    var questionaire = this.data.qtnr;
+    newtask = this.data.testnewtask;
+    api_cpt.postTask(newtask, questionaire).then(res => {
+      console.log(res)
+    }, err => {
+      console.log(err)
+    });
 
   }
 

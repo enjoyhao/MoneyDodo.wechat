@@ -57,7 +57,7 @@ create(store, {
   },
   test: function (e) {
     test.testGetUser()
-    //test.testGetTasks()
+    test.testGetTasks()
     test.wtf()
   }
 })

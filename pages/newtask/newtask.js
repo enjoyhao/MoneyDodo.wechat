@@ -117,10 +117,8 @@ create(store, {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      qtnr: store.data.newQtnr
-    })
-    console.log(this.data.qtnr)
+    //清空旧问卷
+    store.data.newQtnr = null
   },
 
   /**
@@ -140,6 +138,11 @@ create(store, {
       fail: function(res) {},
       complete: function(res) {},
     })
+
+    this.setData({
+      qtnr: store.data.newQtnr
+    })
+    console.log(this.data.qtnr)
 
     // 调用函数时，传入new Date()参数，返回值是日期和时间
     var time = util.formatTime(new Date());
@@ -276,15 +279,28 @@ create(store, {
     newtask.releaseTime = this.data.taskInfo.startTime;
     newtask.cutoffTime = this.data.taskInfo.deadline;
     newtask.rewardAmount = this.data.taskInfo.taskMoney;
-    newtask.taskStatus = "未完成" ;
+    newtask.taskStatus = "0" ;
 
-    var questionaire = this.data.qtnr;
-    newtask = this.data.testnewtask;
-    api_cpt.postTask(newtask, questionaire).then(res => {
-      console.log(res)
-    }, err => {
-      console.log(err)
-    });
+    
+    if (store.data.newQtnr == null){
+      wx.showToast({
+        title: '请先设计问卷',
+      })
+    } else {
+      console.log(store.data.newQtnr)
+      api_cpt.postTask(newtask, store.data.newQtnr).then(res => {
+        console.log(res)
+        wx.showToast({
+          title: '提交成功',
+        })
+      }, err => {
+        console.log(err)
+        wx.showToast({
+          title: '提交失败，用户审核未通过',
+        })
+      });
+    }
+    
 
   }
 

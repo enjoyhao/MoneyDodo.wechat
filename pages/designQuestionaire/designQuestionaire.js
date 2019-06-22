@@ -215,9 +215,11 @@ create(store, {
 
 
   submitQtnr: function(e) {
-    store.data.newQtnr = this.data.qtnr;
-    wx.navigateBack({
-      delta: 1
+    store.data.newQtnr = this.data.qtnr
+    console.log("submit qtnr")
+    console.log(this.data.qtnr)
+    wx.switchTab({
+      url: '/pages/newtask/newtask',
     })
   },
 

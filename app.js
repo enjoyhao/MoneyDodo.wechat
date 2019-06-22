@@ -43,7 +43,7 @@ App({
   auth: function () {
     return new Promise((resolve, reject) => {
       // 检查session key是否已经过期
-      
+      /*
       wx.checkSession({
         success: res => {
           console.log('session key is valid...')
@@ -55,7 +55,7 @@ App({
           console.log('session key has expired...')
         }
       })
-      
+      */
       // 登录
       wx.login({
         success: res => {

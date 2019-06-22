@@ -63,10 +63,11 @@ create(store, {
     }
     // 获取用户头像的路径，优先显示用户设置的头像，否则显示微信头像（若已获取到，否则显示默认头像）
     let src = ''
-    if (store.data.hasProfile && store.data.userAvatar.path != '') {
+    if (store.data.hasProfile && store.data.profile.icon) {
       console.log('has icon: ')
       //src = '../../static/imgs/default-avatar.jpg'
-      src = store.data.userAvatar.path
+      //src = store.data.userAvatar.path
+      src = store.data.profile.icon
       console.log('src:'+src)
     } else if (store.data.hasUserInfo && store.data.userInfo.avatarUrl != '') {
       src = store.data.userInfo.avatarUrl
@@ -257,6 +258,12 @@ create(store, {
            * 上传头像
            */
           console.log(res)
+          let imgType = imgInfo.tempFilePaths[0].split(".").slice(-1) || 'jpeg'
+          if (imgType == 'jpg') {
+            imgType = 'jpeg'
+          }
+          // 给base64编码加上前缀，使其可以作为src属性的值显示图片
+          res.data = 'data:image/' + imgType + ';base64,' + res.data
           // 用户头像以base64编码传输
           let profile = {
             'icon': res.data
@@ -274,37 +281,11 @@ create(store, {
             cloudPath: `${CLOUD_DIR_USER}/${USER_AVATAR_KEY}`,
             filePath: imgInfo.tempFilePaths[0],
           })
-          /*
-          wx.cloud.uploadFile({
-            cloudPath: `${CLOUD_DIR_USER}/${USER_AVATAR_KEY}`,
-            filePath: imgInfo.tempFilePaths[0],
-            success: res => {
-              console.log(res)
-              that.setData({
-                avatarSrc: imgInfo.tempFilePaths[0]
-              })
-              that.update({
-                ['userAvatar.path']: res.fileID,
-              })
-            }
-          })
-          
-          wx.hideLoading()
-          // 更新存储的用户头像
-          that.update({
-            ['profile.icon']: res.data,
-            ['userAvatar.path']: imgInfo.tempFilePaths[0]
-          })
-          wx.showToast({
-            icon: 'success',
-            title: '上传成功',
-          })
-          */
         })
         .then(res => {
           /**
            * 头像成功上传到云，更新页面显示
-           */
+           */   
           console.log(res)
           that.setData({
             avatarSrc: imgInfo.tempFilePaths[0]
@@ -332,68 +313,6 @@ create(store, {
           })
           logger.info('the err is', err)
         })
-        /*
-        wx.getFileSystemManager().readFile({
-          filePath: res.tempFilePaths[0],
-          encoding: 'base64',
-          success: res => {
-            console.log(res)
-            // 用户头像以base64编码传输
-            let profile = {
-              'icon': res.data
-            }
-            // 此处只需将profile需要改变的字段作为参数请求即可
-            user.putUser(profile).then(res => {
-              console.log(res)
-              // 将图片上传到云
-              wx.cloud.init()
-              wx.cloud.uploadFile({
-                cloudPath: `${CLOUD_DIR_USER}/${USER_AVATAR_KEY}`,
-                filePath: imgInfo.tempFilePaths[0],
-                success: res => {
-                  console.log(res)
-                  that.setData({
-                    avatarSrc: imgInfo.tempFilePaths[0]
-                  })
-                  that.update({
-                    ['userAvatar.path']: res.fileID,
-                  })
-                }
-              })
-              wx.hideLoading()
-              // 更新存储的用户头像
-              that.update({
-                ['profile.icon']: res.data,
-                ['userAvatar.path']: imgInfo.tempFilePaths[0]
-              })
-              wx.showToast({
-                icon: 'success',
-                title: '上传成功',
-              })
-            }, err => {
-              wx.hideLoading()
-              wx.showToast({
-                title: err.data.errinfo,
-                icon: 'none',
-              })
-              console.log(err)
-            })
-            
-          },
-          fail: err => {
-            console.log(err)
-            wx.hideLoading()
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败，请重试',
-            })
-          },
-          complete: res => {
-            console.log('base64 transformed complete:')
-            console.log(res)
-            //wx.hideLoading()
-          }
-        })*/
       },
       fail: function (err) {
         console.log(err)
@@ -452,6 +371,12 @@ create(store, {
            * 上传头像
            */
           console.log(res)
+          let imgType = imgInfo.tempFilePaths[0].split(".").slice(-1) || 'jpeg'
+          if (imgType == 'jpg') {
+            imgType = 'jpeg'
+          }
+          // 给base64编码加上前缀，使其可以作为src属性的值显示图片
+          res.data = 'data:image/' + imgType + ';base64,' + res.data
           // 认证图片以base64编码传输
           let profile = {
             'certifiedPic': res.data

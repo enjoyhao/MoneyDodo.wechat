@@ -20,7 +20,7 @@
               detail="{{item.restrain}}"
               beginDate="{{item.pubdate}}"
               dueDate="{{item.cutoff}}"
-              publisher="{{item.publisher}}"
+              publisher="{{userInfos[item.publisher] ? userInfos[item.publisher].name : item.publisher}}"
               reward="{{item.reward}}"
               url="{{'/pages/taskDetail/taskDetail?id=' + item.id}}"
               bindtap="onTapTask"
@@ -31,9 +31,10 @@
         <card class="questionnaire-card"></card>
         <card class="questionnaire-card"></card>
       </view>
-      <view slot="1">内容2</view>
-      <view slot="2">内容3</view>
-      <view slot="3">内容4</view>
+      <view slot="1" class="flex-row questionnaire-list">
+      </view>
+      <view slot="2" class="flex-row questionnaire-list">内容3</view>
+      <view slot="3" class="flex-row questionnaire-list">内容4</view>
     </mini-tab>
   </view>
   <view>

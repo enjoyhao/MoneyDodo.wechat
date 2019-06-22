@@ -10,6 +10,8 @@ export default {
     openId: null,
     token: null,
     userInfo: null,
+    // 缓存其他用户的信息
+    userInfos: {},
     profile: null,
     /**用户头像文件信息 */
     userAvatar: {

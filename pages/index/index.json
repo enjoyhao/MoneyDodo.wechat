@@ -2,5 +2,6 @@
   "usingComponents": {
     "mini-tab": "../../components/mini-tab/mini-tab",
     "card": "../../components/card/card"
-  }
+  },
+  "enablePullDownRefresh": true
 }

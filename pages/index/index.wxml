@@ -14,6 +14,18 @@
   <view class="flex-column tab-box">
     <mini-tab class="tab" tabs="{{businessType}}">
       <view class="flex-row questionnaire-list" slot="0">
+        <card class="questionnaire-card" 
+              wx:for="{{qtnrTasks}}" 
+              wx:key="{{item.id}}"
+              detail="{{item.restrain}}"
+              beginDate="{{item.pubdate}}"
+              dueDate="{{item.cutoff}}"
+              publisher="{{item.publisher}}"
+              reward="{{item.reward}}"
+              url="{{'/pages/taskDetail/taskDetail?id=' + item.id}}"
+              bindtap="onTapTask"
+        >
+        </card>
         <card class="questionnaire-card"></card>
         <card class="questionnaire-card" detail="很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的任务详情"></card>
         <card class="questionnaire-card"></card>

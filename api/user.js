@@ -1,8 +1,8 @@
 import store from '../store/store.js'
 const apiBase = store.data.server + store.data.apiBase + '/users'
 export default {
-  getUser: () => {
-    let userId = store.data.openId
+  getUser: (userId = store.data.openId) => {
+    //let userId = store.data.openId
     return new Promise((resolve, reject) => {
       wx.request({
         method: 'GET',

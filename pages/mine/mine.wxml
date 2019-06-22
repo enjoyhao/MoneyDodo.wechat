@@ -1,8 +1,8 @@
 <!--pages/mine/mine.wxml-->
 <view class="userInfo">
-  <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-  <text>{{userInfo.nickName}}</text>
-  <button class="modify-btn">修改个人信息</button>
+  <image class="userinfo-avatar" src="{{avatarSrc}}"></image>
+  <text>{{username}}</text>
+  <button class="modify-btn" bindtap="gotoProfile">修改个人信息</button>
 </view>
 
 <view class="money">

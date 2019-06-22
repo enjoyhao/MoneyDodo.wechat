@@ -8,9 +8,9 @@ const tasks = [{
   id: '',
   kind: config.TASK_KIND_QUESTIONNAIRE,
   publisher: store.data.openId || '',
-  restrain: '要求男生，200斤以上',
-  pubdate: '2019-05-14 12:00',
-  cutoff: '2019-05-20 12:00',
+  restrain: '仅限男生',
+  pubdate: '2019-05-14T12:00:00Z',
+  cutoff: '2019-05-20T12:00:00Z',
   reward: 10,
   state: config.TASK_STATE_NON_RELEASED
 }]

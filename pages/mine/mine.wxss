@@ -9,6 +9,7 @@
   height: 128rpx;
   margin: 40rpx;
   border-radius: 50%;
+  border: solid 1px #b1b1b1; 
 }
 .modify-btn {
   width: 200rpx;

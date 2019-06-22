@@ -1,5 +1,5 @@
 // pages/newtask/newtask.js
-var util = require('../../utils/util.js');
+let util = require('../../utils/util.js')
 import api_cpt from '../../api/cpt.js'
 import store from '../../store/store.js'
 import create from '../../utils/create'
@@ -49,7 +49,6 @@ create(store, {
 
     taskInfo:{
       tasktype: 1,
-      qsnrId: null,
       taskMoney: "0.00",
       taskDemand: "100",
       startTime: "",
@@ -145,13 +144,13 @@ create(store, {
     console.log(this.data.qtnr)
 
     // 调用函数时，传入new Date()参数，返回值是日期和时间
-    var time = util.formatTime(new Date());
-    var date = util.formatDate(new Date());
+    let time = util.formatTime(new Date())
+    let date = util.formatDate(new Date())
     // 再通过setData更改Page()里面的data，动态更新页面的数据
     this.setData({
       time: time,
       date: date
-    });
+    })
 
   },
 
@@ -243,7 +242,7 @@ create(store, {
   },
 
   bindInputMoney(e){
-    this.data.taskInfo.taskMoney = e.detail.value;
+    this.data.taskInfo.taskMoney = e.detail.value
   },
 
   bindInputDemand(e) {
@@ -257,50 +256,61 @@ create(store, {
   },
 
   submitTask: function(){
-    var nowTime = util.formatTime(new Date());
-    var nowDate = util.formatDate(new Date());
+    let nowTime = util.formatTime(new Date())
+    let nowDate = util.formatDate(new Date())
 
-    this.data.taskInfo.startTime = nowDate + ' ' + nowTime;
-    this.data.taskInfo.deadline = this.data.date + " " + this.data.time;
+    this.data.taskInfo.startTime = nowDate + ' ' + nowTime
+    this.data.taskInfo.deadline = this.data.date + " " + this.data.time
 
-    this.data.taskInfo.takerLimit.sex = this.data.sex[this.data.index_sex];
-    this.data.taskInfo.takerLimit.grade = this.data.grades[this.data.index_grade];
+    this.data.taskInfo.takerLimit.sex = this.data.sex[this.data.index_sex]
+    this.data.taskInfo.takerLimit.grade = this.data.grades[this.data.index_grade]
     
-    this.data.taskInfo.takerLimit.school = this.data.school[this.data.index_school];
+    this.data.taskInfo.takerLimit.school = this.data.school[this.data.index_school]
 
-    console.log(this.data.taskInfo);
+    console.log(this.data.taskInfo)
 
     //提交任务信息
     //TO DO
-    var newtask = this;
-    newtask.taskType = this.data.taskInfo.tasktype;
-    newtask.taskFrom = store.data.openId;
-    newtask.taskLimit = "000";
-    newtask.releaseTime = this.data.taskInfo.startTime;
-    newtask.cutoffTime = this.data.taskInfo.deadline;
-    newtask.rewardAmount = this.data.taskInfo.taskMoney;
-    newtask.taskStatus = "0" ;
+    let newtask = this
+    newtask.kind = 'questionaire'
+    newtask.publisher = store.data.openId
+    console.log('store.data.openId')
+    console.log(store.data.openId)
+    newtask.restrain = '000' //三个都是不限
+    newtask.pubdate = this.data.taskInfo.startTime
+    newtask.cutoff = this.data.taskInfo.deadline
+    newtask.reward = this.data.taskInfo.taskMoney
+    newtask.state = '0' // 未完成
+    //任务需求和任务描述，修改数据库后取消注释
+    //newtask.demand = this.data.taskInfo.taskDemand
+    //newtask.description = this.data.taskinfo.tips
 
     
     if (store.data.newQtnr == null){
       wx.showToast({
         title: '请先设计问卷',
+        icon: 'none'
       })
-    } else {
-      console.log(store.data.newQtnr)
-      api_cpt.postTask(newtask, store.data.newQtnr).then(res => {
-        console.log(res)
-        wx.showToast({
-          title: '提交成功',
-        })
-      }, err => {
-        console.log(err)
-        wx.showToast({
-          title: '提交失败，用户审核未通过',
-        })
-      });
-    }
-    
+      return
+    } 
+    console.log(store.data.newQtnr)
+    newtask = this.data.testnewtask
+    api_cpt.postTask(newtask, store.data.newQtnr).then(res => {
+      console.log(res)
+      wx.showToast({
+        title: '提交成功',
+        success: function () {
+          wx.switchTab({
+            url: '/pages/index/index',
+          })
+        }
+      })
+    }, err => {
+      console.log(err)
+      wx.showToast({
+        title: '提交失败，用户审核未通过',
+      })
+    })
 
   }
 

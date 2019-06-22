@@ -1,5 +1,7 @@
 export default {
   data: {
+    // server: 'http://localhost:8123',
+    //server: 'http://172.18.32.216:8123',
     //server: 'http://localhost:8123',
     //server: 'http://172.18.32.216:8889',
     server: 'http://111.230.10.230:8998',
@@ -9,6 +11,10 @@ export default {
     token: null,
     userInfo: null,
     profile: null,
+    /**用户头像文件信息 */
+    userAvatar: {
+      path: '',
+    },
     hasUserInfo: false,
     hasProfile: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),

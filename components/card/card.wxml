@@ -1,5 +1,5 @@
 <!--components/card/card.wxml-->
-<view class="box flex-column container">
+<view class="box flex-column container" bindtap="onTap">
   <view class="title">{{title}}</view>
   <view class="detail"><text>任务详情：\n{{detail}}</text></view>
   <view class="date"><text>开始时间：\n{{beginDate}}</text></view>

@@ -3,6 +3,7 @@ let util = require('../../utils/util.js')
 import api_cpt from '../../api/cpt.js'
 import store from '../../store/store.js'
 import create from '../../utils/create'
+import api_user from '../../api/user.js'
 
 
 create(store, {
@@ -269,33 +270,39 @@ create(store, {
 
     console.log(this.data.taskInfo)
 
-    //提交任务信息
-    //TO DO
-    let newtask = this
-    newtask.kind = 'questionaire'
-    newtask.publisher = store.data.openId
-    console.log('store.data.openId')
-    console.log(store.data.openId)
-    newtask.restrain = '000' //三个都是不限
-    newtask.pubdate = this.data.taskInfo.startTime
-    newtask.cutoff = this.data.taskInfo.deadline
-    newtask.reward = this.data.taskInfo.taskMoney
-    newtask.state = '0' // 未完成
-    //任务需求和任务描述，修改数据库后取消注释
-    //newtask.demand = this.data.taskInfo.taskDemand
-    //newtask.description = this.data.taskinfo.tips
+    api_user.getUser().then(res => {
+      console.log(res)
+      let sid = res.data.data.sId
+      //提交任务信息
+      let newtask = {}
+      newtask.kind = 'questionaire'
+      newtask.publisher = sid
+      newtask.restrain = '000' //三个都是不限
+      console.log(this.data.taskInfo.startTime)
+      console.log(this.data.taskInfo.deadline)
+      newtask.pubdate = this.data.taskInfo.startTime
+      newtask.cutoff = this.data.taskInfo.deadline
+      newtask.reward = this.data.taskInfo.taskMoney
+      newtask.state = '0' // 未完成
+      //任务需求和任务描述，修改数据库后取消注释
+      //newtask.demand = this.data.taskInfo.taskDemand
+      //newtask.description = this.data.taskinfo.tips
 
-    
-    if (store.data.newQtnr == null){
-      wx.showToast({
-        title: '请先设计问卷',
-        icon: 'none'
-      })
-      return
-    } 
-    console.log(store.data.newQtnr)
-    newtask = this.data.testnewtask
-    api_cpt.postTask(newtask, store.data.newQtnr).then(res => {
+
+      if (store.data.newQtnr == null) {
+        wx.showToast({
+          title: '请先设计问卷',
+          icon: 'none'
+        })
+      } else {
+        return api_cpt.postTask(newtask, store.data.newQtnr)
+      }
+
+    }, err => {
+      console.log("获取用户信息失败")
+      console.log(err)
+    }).then(res => {
+      if(res == null) return 
       console.log(res)
       wx.showToast({
         title: '提交成功',
@@ -306,11 +313,14 @@ create(store, {
         }
       })
     }, err => {
+      if (err == null) return 
       console.log(err)
       wx.showToast({
         title: '提交失败，用户审核未通过',
       })
     })
+
+    
 
   }
 

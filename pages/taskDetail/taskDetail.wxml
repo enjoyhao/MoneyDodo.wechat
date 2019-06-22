@@ -4,7 +4,10 @@
   <view class="top_block">
     <view class="url_block">
 
-      <text class='qsnrTitle'> {{qsnrTitle}} </text>
+      <navigator>
+        <text class='qsnrTitle'> {{qsnrTitle}} </text>
+      </navigator>
+      
 
     </view>
   </view>

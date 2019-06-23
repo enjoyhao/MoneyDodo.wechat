@@ -5,7 +5,7 @@
     <view class="url_block">
 
       <navigator>
-        <text class='qsnrTitle'> {{qsnrTitle}} </text>
+        <text class='qsnrTitle'> {{curTask.title}} </text>
       </navigator>
       
 
@@ -16,21 +16,21 @@
   
     <view class="row">
       <text> 赏金 </text>
-      <text class='red'> {{task_money}} </text>
+      <text class='red'> {{curTask.reward}} </text>
     </view>
     <view class="row">
       <text> 截止时间 </text>
-      <text class='red'> {{task_deadline}} </text>
+      <text class='red'> {{curTask.cutoff}} </text>
     </view>
     <view class="row">
-      <text class='gray'> 备注 </text>
-      <text class='gray'> {{task_tips}} </text>
+      <text > 任务描述 </text>
+      <text class='gray'> {{curTask.restrain}} </text>
     </view>
 
   </view>
 
   <button class='main_btn' hidden='{{imPublisher}}' bindtap='startToDo'>接受任务并开始填写</button>
-  <button class="second_btn" hidden='{{imPublisher}}' bindtap='exit'> 退出 </button>
+  <button class="second_btn" hidden='{{hidetaskClosed}}' > 任务已结束/已取消 </button>
   <button class='main_btn' hidden='{{imTaker}}' bindtap='taskDone'>结束任务</button><button class='second_btn' hidden='{{imTaker}}' bindtap='cancleTask'>取消任务</button>
 
 </view>

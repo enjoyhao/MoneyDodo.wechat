@@ -90,7 +90,7 @@ export default {
     return new Promise((resolve, reject) => {
       wx.request({
         method: 'PUT',
-        url: `${apiBase}/${task.taskId}`,
+        url: `${apiBase}/${task.id}`,
         header: {
           'Authorization': `Bearer ${store.data.token}`
         },

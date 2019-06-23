@@ -6,13 +6,18 @@
 
 <view class='body'>
   <picker bindchange="bindTaskPickerChange" value="{{index_task}}" range="{{tasktypes}}" class="first_block">
+    
     <view class='picker'>
       <block class="picker_text"> 任务类型：</block> 
       <block class="tasktype_text">{{tasktypes[index_task]}} </block>
       <block class="picker_icon"> <image class="arrow_icon" src="/static/imgs/arrow_down.png"></image> </block>
     </view>
   </picker>
-
+  <view class='third_block'>
+    <view class="title_row">
+      <input type='digit' confirm-type='done' placeholder='请输入问卷标题' bindinput='bindInputTitle'></input>
+    </view>
+  </view>
 
   <view class="url_block">
     <button class="weui-btn" type="default" bindtap='designQtnrBtnClicked'>设计问卷</button>
@@ -54,7 +59,7 @@
   </view>
 
   <view class="url_block">
-    <textarea placeholder="填写任务描述" value='{{taskinfo.tips}}'/>
+    <textarea placeholder="填写任务描述" bindinput='bindInputTips'/>
   </view>
 
   <view class='third_block'>

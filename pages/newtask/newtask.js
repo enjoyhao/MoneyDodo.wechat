@@ -51,6 +51,7 @@ create(store, {
 
     taskInfo:{
       tasktype: 1,
+      title: null,
       taskMoney: "0.00",
       taskDemand: "100",
       startTime: "",
@@ -197,6 +198,14 @@ create(store, {
     this.data.taskInfo.taskMoney = e.detail.value
   },
 
+  bindInputTips(e) {
+    this.data.taskInfo.tips = e.detail.value
+  },
+
+  bindInputTitle(e){
+    this.data.taskInfo.title = e.detail.value
+  },
+
   bindInputDemand(e) {
     this.data.taskInfo.taskDemand = e.detail.value
   },
@@ -222,30 +231,68 @@ create(store, {
     let newtask = {}
     newtask.kind = config.TASK_KIND_QUESTIONNAIRE
     newtask.publisher = store.data.openId
-    newtask.restrain = '不限' //三个都是不限
+    newtask.title = this.data.taskInfo.title
+    newtask.restrain = '接受任务者限制: ' //三个都是不限
+
+    if (this.data.index_sex != 0) { //限性别
+      newtask.restrain += this.data.taskInfo.takerLimit.sex + ';'
+    }
+    if (this.data.index_grade != 0) { //限年级
+      newtask.restrain += this.data.taskInfo.takerLimit.grade + ';'
+    }
+    if (this.data.index_school != 0) { //限学校
+      newtask.restrain += this.data.taskInfo.takerLimit.school + ';'
+    }
+
+    if (this.data.index_sex == 0 && this.data.index_grade == 0 && this.data.index_school == 0) {
+      newtask.restrain += '无限制 \n'
+    } else {
+      newtask.restrain += '\n'
+    }
+
+    newtask.restrain += this.data.taskInfo.tips
+
     newtask.pubdate = this.data.taskInfo.startTime
     newtask.cutoff = this.data.taskInfo.deadline
-    newtask.reward = this.data.taskInfo.taskMoney
-    newtask.state = config.TASK_STATE_NON_RELEASED // 未完成
+    newtask.reward = parseInt(this.data.taskInfo.taskMoney)
+    newtask.state = ''
     //任务需求和任务描述，修改数据库后取消注释
     //newtask.demand = this.data.taskInfo.taskDemand
     //newtask.description = this.data.taskinfo.tips
 
+    console.log(newtask)
+
     api_cpt.postTask(newtask, store.data.newQtnr)
     .then(res => {
-      console.log(res)
+       console.log("post task res")
+       console.log(res)
+      let task = res.data.data
+      task.state = config.TASK_STATE_RELEASED
+      return api_cpt.putTask(task, task.qtnr)
+    }, err => {
+      console.log(err)
+      wx.showToast({
+        title: '提交失败，用户审核未通过',
+        icon: 'none'
+      })
+    }).then(res => {
       wx.showToast({
         title: '提交成功',
+        duration: 1000,
         success: function () {
-          wx.switchTab({
-            url: '/pages/index/index',
-          })
+          setTimeout(function () {
+            wx.switchTab({
+              url: '/pages/index/index',
+            })
+          }, 1000)
+
         }
       })
     }, err => {
       console.log(err)
       wx.showToast({
-        title: '提交失败，用户审核未通过',
+        title: '发布问卷失败',
+        icon: 'none'
       })
     })
   }

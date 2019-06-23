@@ -60,6 +60,15 @@
   border-bottom-style: solid;
 }
 
+.title_row {
+  margin-bottom: 10rpx;
+  padding-bottom: 20rpx;
+  width: 100%;
+  border-bottom-color: gray;
+  border-bottom-width: 2rpx;
+  border-bottom-style: solid;
+}
+
 .money input{
   color: red;
 }

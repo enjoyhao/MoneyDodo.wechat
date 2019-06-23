@@ -13,8 +13,8 @@ create(store, {
     profile: null,
     hasUserInfo: null,
     hasProfile: null,
-    avatarSrc: '',
-    username: '',
+    avatarSrc: null,
+    username: null,
     balance: 0.01
   },
 
@@ -23,7 +23,7 @@ create(store, {
    */
   onLoad: function (options) {
     // 获取用户头像的路径，优先显示用户设置的头像，否则显示微信头像（若已获取到，否则显示默认头像）
-    let src = ''
+    /*let src = ''
     if (store.data.hasProfile && store.data.profile.icon) {
       src = store.data.profile.icon
     } else if (store.data.hasUserInfo && store.data.userInfo.avatarUrl != '') {
@@ -45,7 +45,7 @@ create(store, {
     this.setData({
       avatarSrc: src,
       username: name
-    })
+    })*/
   },
 
   /**

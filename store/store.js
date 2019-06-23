@@ -9,10 +9,14 @@ export default {
     motto: 'Hello World',
     openId: null,
     token: null,
+    username: '我的名字叫没有名字',
+    avatarSrc: '/static/imgs/default-avatar.jpg',
     userInfo: null,
     // 缓存其他用户的信息
     userInfos: {},
-    profile: null,
+    profile: {
+      certificationStatus: 0
+    },
     /**用户头像文件信息 */
     userAvatar: {
       path: '',

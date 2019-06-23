@@ -64,11 +64,35 @@ create(store, {
       })
     })
     .then(res => {
+      // 此处已经成功获取到用户的个人信息
       console.log(res)
       that.store.data.hasProfile = res.data.data.name && res.data.data.name != ''
       if (that.store.data.hasProfile) {
         that.store.data.profile = res.data.data
       }
+      // 获取用户头像的路径，优先显示用户设置的头像，否则显示微信头像（若已获取到，否则显示默认头像）
+      let src = ''
+      if (store.data.hasProfile && store.data.profile.icon) {
+        src = store.data.profile.icon
+      } else if (store.data.hasUserInfo && store.data.userInfo.avatarUrl != '') {
+        src = store.data.userInfo.avatarUrl
+      } else {
+        src = store.data.avatarSrc
+      }
+      console.log('avatar src:' + src)
+      // 获取用户名，优先显示用户设置的用户名，否则显示微信昵称（若已获取到，否则显示默认昵称）
+      let name = ''
+      if (store.data.hasProfile && store.data.profile.name) {
+        name = store.data.profile.name
+      } else if (store.data.hasUserInfo && store.data.userInfo.nickName) {
+        name = store.data.userInfo.nickName
+      } else {
+        name = store.data.username
+      }
+      console.log('user name:' + name)
+      // 更新用户名和头像
+      that.store.data.avatarSrc = src
+      that.store.data.username = name
       that.update().then(res => {
         wx.hideLoading()
         that.setData({

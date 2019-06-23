@@ -23,7 +23,7 @@ create(store, {
     hasUserInfo: false,
 
     curTask: null,
-    hidetaskClosed: false
+    hidetaskClosed: true
   },
 
   /**

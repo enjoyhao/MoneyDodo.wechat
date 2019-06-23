@@ -15,7 +15,7 @@
   </picker>
   <view class='third_block'>
     <view class="title_row">
-      <input type='digit' confirm-type='done' placeholder='请输入问卷标题' bindinput='bindInputTitle'></input>
+      <input type='text' confirm-type='done' placeholder='请输入问卷标题' bindinput='bindInputTitle'></input>
     </view>
   </view>
 

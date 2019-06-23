@@ -41,8 +41,8 @@
     <view class="form-item-group">
       <view class="flex-row form-item" bindtap="onTabUploadCertification">
         <text>认证情况</text>
-        <icon type="{{profile.certificationStatus == 0 ? 'cancel' : 'success'}}" color="{{profile.certificationStatus == 0 ? 'red' : 'green'}}"></icon>
-        <text>（点击上传身份认证信息）</text>
+        <icon type="{{certIconType}}" color="{{certIconColor}}"></icon>
+        <text class="hint">{{certIconHint}}</text>
       </view>
     </view>
     <view class="flex-column form-btn">

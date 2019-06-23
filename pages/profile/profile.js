@@ -2,6 +2,7 @@
 import store from '../../store/store'
 import create from '../../utils/create'
 import {rules} from '../../utils/util'
+import config from '../../api/config'
 import user from '../../api/user'
 import certify from '../../api/certify'
 import promiseCalls from '../../utils/promiseCalls.js'
@@ -42,17 +43,29 @@ create(store, {
     colors: {
       'valid': '#f7f7f7',
       'invalid': 'red'
-    }
+    },
+    // 配置不同认证状态下显示的图标
+    certIcon: [
+      {type:'cancel',color: 'red'},
+      {type: 'waiting', color: ''},
+      {type: 'success', color: 'green'}
+    ],
+    // 配置不同认证状态下显示的提示
+    certHint: [
+      '未认证，点击上传身份认证信息',
+      '审核中',
+      '已认证',
+    ],
+    certIconType: 'cancel',
+    certIconColor: '',
+    certIconHint: '未认证，点击上传身份认证信息'
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    logger.log('log')
-    logger.info('info')
-    logger.warn('warn')
-    logger.debug('debug')
+    let that = this
     console.log(options)
     if (options && options.isFirstLogin == 'true') {
       console.log('the first login!')
@@ -60,9 +73,31 @@ create(store, {
         isFirstLogin: true,
         isEditMode: true,
       })
+    } else {
+      // 更新用户个人信息
+      user.getUser().then(res => {
+        if (res.data.status) {
+          that.update({
+            profile: res.data.data
+          }).then(() => {
+            // 设置认证情况的显示
+            that.setData({
+              certIconType: that.data.certIcon[0 + store.data.profile.certificationStatus].type,
+              certIconColor: that.data.certIcon[0 + store.data.profile.certificationStatus].color,
+              certIconHint: that.data.certHint[0 + store.data.profile.certificationStatus]
+            })
+          })
+        }
+      })
     }
+    // 设置认证情况的显示
+    this.setData({
+      certIconType: this.data.certIcon[0 + store.data.profile.certificationStatus].type,
+      certIconColor: this.data.certIcon[0 + store.data.profile.certificationStatus].color,
+      certIconHint: this.data.certHint[0 + store.data.profile.certificationStatus]
+    })
     // 获取用户头像的路径，优先显示用户设置的头像，否则显示微信头像（若已获取到，否则显示默认头像）
-    let src = ''
+    /*let src = ''
     if (store.data.hasProfile && store.data.profile.icon) {
       console.log('has icon: ')
       //src = '../../static/imgs/default-avatar.jpg'
@@ -77,9 +112,9 @@ create(store, {
     //src = store.data.profile.icon
     //console.log(store.data.profile.icon)
     console.log('src:'+src)
-    this.setData({
+    this.update({
       avatarSrc: src
-    })
+    })*/
   },
 
   /**
@@ -195,6 +230,14 @@ create(store, {
         that.setData({
           isEditMode: false
         })
+        // 更新用户名和头像
+        if (res.data.data.name) {
+          that.store.data.username = res.data.data.name
+        }
+        if (res.data.data.icon) {
+          that.store.data.avatarSrc = res.data.data.icon
+        }
+        that.update()
         // 修改信息成功
         wx.hideLoading()
         wx.showToast({
@@ -347,7 +390,13 @@ create(store, {
   onTabUploadCertification: function(e) {
     let that = this
     // 若已经认证
-
+    if (store.data.profile.certificationStatus == config.CERT_STATUS_CERTED) {
+      wx.showToast({
+        icon: 'warning',
+        title: '已认证通过，无需再次认证',
+      })
+      return
+    }
     // 若未认证
     wx.chooseImage({
       count: 1,
@@ -391,7 +440,13 @@ create(store, {
           console.log(res)
           // 更新本地存储的用户认证信息
           that.update({
-            ['profile.certificationStatus']: res.data.certificationStatus,
+            ['profile.certificationStatus']: 0+res.data.data.certificationStatus,
+          })
+          // 更新认证情况的显示
+          that.setData({
+            certIconType: that.data.certIcon[0 + res.data.data.certificationStatus].type,
+            certIconColor: that.data.certIcon[0 + res.data.data.certificationStatus].color,
+            certIconHint: that.data.certHint[0 + res.data.data.certificationStatus]
           })
           // 更新页面显示
           wx.hideLoading()
@@ -411,6 +466,7 @@ create(store, {
           })
         })
         .catch(err => {
+          wx.hideLoading()
           console.log(err)
         })
       },

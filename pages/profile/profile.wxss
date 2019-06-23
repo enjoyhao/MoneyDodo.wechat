@@ -88,6 +88,10 @@ view {
   margin-top: 20rpx;
 }
 
+.hint {
+  width: 420rpx;
+}
+
 .form-btn {
   margin-top: 20rpx;
 }

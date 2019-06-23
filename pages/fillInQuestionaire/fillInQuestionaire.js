@@ -17,9 +17,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //let that = this
+    let that = this
     let taskId = options.taskId
-    cpt.getTask(this.data.taskId).then(function (res) {
+    cpt.getTask(taskId).then(function (res) {
       console.log(res.data.data.qtnr)
       that.setData({
         qtnr: res.data.data.qtnr
@@ -86,5 +86,11 @@ Page({
 
   radioChange: function () {
     
+  },
+
+  postQtnr: function () {
+    wx.redirectTo({
+      url: '/pages/submitSuccess/submitSuccess'
+    })
   }
 })

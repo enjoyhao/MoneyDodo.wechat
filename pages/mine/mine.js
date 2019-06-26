@@ -1,6 +1,8 @@
 // pages/mine/mine.js
 import store from '../../store/store'
 import create from '../../utils/create'
+import user from '../../api/user'
+import charge from '../../api/charge'
 const app = getApp()
 
 create(store, {
@@ -15,37 +17,19 @@ create(store, {
     hasProfile: null,
     avatarSrc: null,
     username: null,
-    balance: 0.01
+    balance: 0.01,
+    // 模态弹窗相关变量
+    showModal: false,
+    setType: '充值金额（元）',
+    operType: 0, // 0代表充值操作，1代表提现操作
+    amount: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 获取用户头像的路径，优先显示用户设置的头像，否则显示微信头像（若已获取到，否则显示默认头像）
-    /*let src = ''
-    if (store.data.hasProfile && store.data.profile.icon) {
-      src = store.data.profile.icon
-    } else if (store.data.hasUserInfo && store.data.userInfo.avatarUrl != '') {
-      src = store.data.userInfo.avatarUrl
-    } else {
-      src = '../../static/imgs/default-avatar.jpg'
-    }
-    console.log('avatar src:' + src)
-    // 获取用户名，优先显示用户设置的用户名，否则显示微信昵称（若已获取到，否则显示默认昵称）
-    let name = ''
-    if (store.data.hasProfile && store.data.profile.name) {
-      name = store.data.profile.name
-    } else if (store.data.hasUserInfo && store.data.userInfo.nickName) {
-      name = store.data.userInfo.nickName
-    } else {
-      name = '我的名字叫没有名字'
-    }
-    console.log('user name:' + name)
-    this.setData({
-      avatarSrc: src,
-      username: name
-    })*/
+    this.updateUser()
   },
 
   /**
@@ -99,6 +83,109 @@ create(store, {
   gotoProfile: function () {
     wx.navigateTo({
       url: '../profile/profile',
+    })
+  },
+  /**
+   * 监听输入，获取输入的金额值
+   */
+  onInputChange: function(e) {
+    this.setData({
+      amount: e.detail.value
+    })
+  },
+  /**
+   * 更新用户信息（包含余额）
+   */
+  updateUser: function() {
+    let that = this
+    user.getUser().then(res => {
+      that.update({
+        profile: res.data.data
+      })
+    }, err => {
+      console.log(err)
+    })
+  },
+  /**
+   * 隐藏弹窗
+   */
+  hideModal: function(e) {
+    this.setData({
+      showModal: false
+    })
+  },
+  /**
+   * 点击弹窗取消按钮
+   */
+  onCancel: function(e) {
+    this.setData({
+      showModal: false
+    })
+  },
+  /**
+   * 点击确认按钮
+   */
+  onConfirm: function(e) {
+    let that = this
+    this.setData({
+      showModal: false
+    })
+    if (this.data.amount) {
+      this.data.amount = parseFloat(this.data.amount)
+      this.data.amount = this.data.amount > 0 ? this.data.amount : -this.data.amount
+      if (this.data.operType === 1) {
+        // 提现操作amount为负数
+        this.data.amount = -this.data.amount
+      }
+      wx.showLoading({
+        title: '操作中',
+        mask: 'true'
+      })
+      // 执行操作
+      charge.postCharges(this.data.amount).then(res => {
+        console.log(res)
+        that.updateUser()
+        wx.hideLoading()
+      }, err => {
+        console.log(err)
+        wx.hideLoading()
+      })
+    }
+    wx.showModal({
+      title: '操作成功',
+      content: '充值/提现成功',
+    })
+  },
+  /**
+   * 用户充值
+   */
+  onClickCharge: function() {
+    /*个人版小程序不支持支付接口
+    wx.requestPayment({
+      timeStamp: '',
+      nonceStr: '',
+      package: '',
+      signType: 'MD5',
+      paySign: '',
+      success(res) {console.log(res)},
+      fail(res) { console.log(res)}
+    })*/
+    this.data.amount = 0
+    this.setData({
+      operType: 0,
+      setType: '充值金额（元）',
+      showModal: true
+    })
+  },
+  /**
+   * 用户提现
+   */
+  onClickWithdraw: function(e) {
+    this.data.amount = 0
+    this.setData({
+      operType: 1,
+      setType: '充值金额（元）',
+      showModal: true
     })
   }
 })

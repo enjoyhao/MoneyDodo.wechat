@@ -9,11 +9,26 @@
   <text>我的闲钱币：</text>
   <view class="balance">
     <view class="iconfont icon-qian"></view>
-    <text class='balance-text'>{{balance}}</text>  
+    <text class='balance-text'>{{profile.balance}}</text>  
   </view>
 </view>
 
 <view class="operator">
-  <button class="gold-btn">充值</button>
-  <button class="white-btn">提现</button>
+  <button class="gold-btn" bindtap="onClickCharge">充值</button>
+  <button class="white-btn" bindtap="onClickWithdraw">提现</button>
+</view>
+
+<!--弹窗-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">设置{{setType}}</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <input placeholder-class="input-holder" type="digit" maxlength="10" class="input" bindinput="onInputChange" placeholder="请输入{{setType}}"></input>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view>
 </view>

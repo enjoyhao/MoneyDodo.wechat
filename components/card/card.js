@@ -26,11 +26,11 @@ Component({
     },
     beginDate: {
       type: String,
-      value: '2019-01-01 12:00'
+      value: '2019-01-01 12:00:00'
     },
     dueDate: {
       type: String,
-      value: '2019-01-01 12:00'
+      value: '2019-01-01 13:00:00'
     },
     publisher: {
       type: String,

@@ -131,7 +131,7 @@ create(store, {
       console.log('default date.......')
       return '2019-06-25 12:00:00'
     }
-    return str.substr(19).replace("T", " ").replace("Z", " ")
+    return str.substr(0, 19).replace("T", " ").replace("Z", " ")
   },
   getUserInfo: function(e) {
     console.log(e)

@@ -52,7 +52,17 @@
 
 .bottom-info-item {
   width: auto;
-  justify-content: space-around;
+  justify-content: flex-start;
+}
+
+.info-l {
+  width: 70%;
+  overflow: hidden;
+}
+
+.info-r {
+  width: 30%;
+  overflow: hidden;
 }
 
 .bottom-info-image {

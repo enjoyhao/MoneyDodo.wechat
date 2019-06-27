@@ -64,8 +64,7 @@ Component({
     * 点击该组件时触发，完成跳转
     */
     onTap(e) {
-      //console.log(this.methods.jumpLink)
-      console.log(this.jumpLink)
+      console.log(this.data.linkType + ' ' + this.data.url)
       this.jumpLink()
     } 
   }

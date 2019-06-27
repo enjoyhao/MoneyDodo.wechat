@@ -43,7 +43,8 @@ create(store, {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log('show......')
+    this.updateUser()
   },
 
   /**
@@ -102,6 +103,16 @@ create(store, {
       that.update({
         profile: res.data.data
       })
+      if (res.data.data.icon) {
+        that.update({
+          avatarSrc: res.data.data.icon,
+        })
+      }
+      if (res.data.data.name) {
+        that.update({
+          username: res.data.data.name
+        })
+      }
     }, err => {
       console.log(err)
     })
@@ -184,7 +195,7 @@ create(store, {
     this.data.amount = 0
     this.setData({
       operType: 1,
-      setType: '充值金额（元）',
+      setType: '提现金额（元）',
       showModal: true
     })
   }

@@ -25,6 +25,10 @@ view {
   flex: 1;
 }
 
+.ad {
+  height: 100%;
+  width: 100%;
+}
 .swiper-item-wrapper {
   background-color: #ff9800;
   height: 100%;

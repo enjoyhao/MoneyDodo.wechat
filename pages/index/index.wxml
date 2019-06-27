@@ -2,13 +2,19 @@
 <view class="container flex-column">
   <swiper class="flex-column" indicator-dots autoplay>
     <swiper-item>
-      <view class="swiper-item-wrapper" >推广1</view>
+      <view class="swiper-item-wrapper" >
+        <image class="ad" mode="scaleToFill" src="/static/imgs/ad1.png"></image>
+      </view>
     </swiper-item>
     <swiper-item>
-      <view class="swiper-item-wrapper">推广2</view>
+      <view class="swiper-item-wrapper">
+        <image class="ad" mode="scaleToFill" src="/static/imgs/ad2.png"></image>
+      </view>
     </swiper-item>
     <swiper-item>
-      <view class="swiper-item-wrapper">推广3</view>
+      <view class="swiper-item-wrapper">
+        <image class="ad" mode="scaleToFill" src="/static/imgs/ad3.png"></image>
+      </view>
     </swiper-item>
   </swiper>
   <view class="flex-column tab-box">
@@ -17,6 +23,7 @@
         <card class="questionnaire-card" 
               wx:for="{{qtnrTasks}}" 
               wx:key="{{item.id}}"
+              title="{{item.title}}"
               detail="{{item.restrain}}"
               beginDate="{{item.pubdate}}"
               dueDate="{{item.cutoff}}"
@@ -26,18 +33,40 @@
               bindtap="onTapTask"
         >
         </card>
-        <card class="questionnaire-card"></card>
-        <card class="questionnaire-card" detail="很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的任务详情"></card>
-        <card class="questionnaire-card"></card>
-        <card class="questionnaire-card"></card>
       </view>
       <view slot="1" class="flex-row questionnaire-list">
+        <card class="questionnaire-card" 
+              wx:for="{{deliveryTasks}}" 
+              wx:key="{{item.id}}"
+              title="{{item.title}}"
+              detail="{{item.restrain}}"
+              beginDate="{{item.pubdate}}"
+              dueDate="{{item.cutoff}}"
+              publisher="{{userInfos[item.publisher] ? userInfos[item.publisher].name : item.publisher}}"
+              reward="{{item.reward}}"
+              bindtap="onTapTask"
+        >
+        </card>
       </view>
-      <view slot="2" class="flex-row questionnaire-list">内容3</view>
-      <view slot="3" class="flex-row questionnaire-list">内容4</view>
+      <view slot="2" class="flex-row questionnaire-list">
+        <card class="questionnaire-card" 
+              wx:for="{{recruitTasks}}" 
+              wx:key="{{item.id}}"
+              title="{{item.title}}"
+              detail="{{item.restrain}}"
+              beginDate="{{item.pubdate}}"
+              dueDate="{{item.cutoff}}"
+              publisher="{{userInfos[item.publisher] ? userInfos[item.publisher].name : item.publisher}}"
+              reward="{{item.reward}}"
+              bindtap="onTapTask"
+        >
+        </card>
+      </view>
     </mini-tab>
   </view>
+  <!--
   <view>
     <button type="primary" bindtap="test" class="temp">test</button>
   </view>
+  -->
 </view>

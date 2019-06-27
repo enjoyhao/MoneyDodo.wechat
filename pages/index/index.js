@@ -5,6 +5,8 @@ import config from '../../api/config'
 import test from '../../api/test'
 import user from '../../api/user'
 import cpt from '../../api/cpt'
+import charge from '../../api/charge'
+import data from '../../api/data'
 import regeneratorRuntime from '../../libs/runtime'
 
 //获取应用实例
@@ -18,8 +20,10 @@ create(store, {
     hasProfile: null,
     canIUse: null,
     array: ['1','2','3'],
-    businessType: ['问卷调查', '外卖代取', '社团招新', '快递代取'],
+    businessType: ['问卷调查', '代取快递', '社团招新'],
     qtnrTasks: [],
+    recruitTasks: [],
+    deliveryTasks: [],
     allQtnrTasks: [],
     userInfos: {}
   },
@@ -30,6 +34,12 @@ create(store, {
     })
   },
   onLoad: function () {
+    console.log(data.d_tasks)
+    console.log(data.r_tasks)
+    this.setData({
+      deliveryTasks: data.d_tasks,
+      recruitTasks: data.r_tasks
+    })
     var that = this
     cpt.getAllTasks().then(res => {
       console.log(res)
@@ -41,6 +51,13 @@ create(store, {
         that.setData({
           qtnrTasks: qtnrTasks,
           allQtnrTasks: allQtnrTasks
+        })
+        // 格式化其他数据
+        that.data.deliveryTasks = that.formatTaskData(that.data.deliveryTasks)
+        that.data.recruitTasks = that.formatTaskData(that.data.recruitTasks)
+        that.setData({
+          deliveryTasks: that.data.deliveryTasks,
+          recruitTasks: that.data.recruitTasks
         })
         // addUserData为异步调用，异步加载任务发布者用户名并更新显示
         that.addUserData(this.data.allQtnrTasks)
@@ -78,12 +95,13 @@ create(store, {
    * 格式化任务列表中的数据，如日期等字段
    */
   formatTaskData: function(tasks) {
-    tasks = tasks.map(task => {
+    let that = this
+    tasks = tasks.map((task,i) => {
       // 格式化日期
       task.cutoff = task.cutoff || ""
-      task.cutoff = this.formatDateStr(task.cutoff)
+      task.cutoff = that.formatDateStr(task.cutoff)
       task.pubdate = task.pubdate || ""
-      task.pubdate = this.formatDateStr(task.pubdate)
+      task.pubdate = that.formatDateStr(task.pubdate)
       // 格式化奖励
       task.reward = task.reward || 0
       task.reward = task.reward > 0 ? task.reward : task.reward
@@ -102,12 +120,17 @@ create(store, {
         return 1
       }
     })
+    console.log('formated data:', tasks)
     return tasks
   },
   /**
    * 格式化日期字符串
    */
   formatDateStr: function(str) {
+    if (!str || str.length < 19) {
+      console.log('default date.......')
+      return '2019-06-25 12:00:00'
+    }
     return str.substr(19).replace("T", " ").replace("Z", " ")
   },
   getUserInfo: function(e) {
@@ -118,13 +141,14 @@ create(store, {
       hasUserInfo: true
     })
   },
+  /*
   test: function (e) {
     // test.testGetUser()
     // test.testGetTasks()
     // test.testApiTask()
     // test.testApiCpt()
     // test.wtf()
-    test.testApiCpt()
+    // test.testApiCpt()
     // test.testGetCerts()
     //wx.navigateTo({
     //  url: '../design-questionnaire/design-questionnaire',
@@ -132,7 +156,8 @@ create(store, {
     // test.testGetUser()
     // test.testGetTasks()
     // test.wtf()
-  },
+    //charge.getBalance()
+  },*/
   onTapTask: function(e) {
     console.log(e)
   }

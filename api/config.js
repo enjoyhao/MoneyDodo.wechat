@@ -14,6 +14,9 @@ const TASK_STATE_CLOSED = "closed"
 
 // task类型
 const TASK_KIND_QUESTIONNAIRE = 'questionnaire'
+const TASK_KIND_DELIVERY = 'delivery'
+const TASK_KIND_RECRUIT = 'recruit'
+
 
 // deal状态
 const DEAL_STATE_UNDERWAY = "underway"
